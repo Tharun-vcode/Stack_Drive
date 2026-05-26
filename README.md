@@ -1,7 +1,6 @@
 # 📂 StackDrive
 
-StackDrive is a simple cloud-style file storage web application built using Flask and SQLite.  
-Users can register, log in, upload files, categorize them, preview supported files, and manage their uploads through a clean dashboard interface.
+Developed StackDrive, a Flask-based file management system featuring secure authentication, file operations with multi-format preview support, category organization, and real-time storage analytics using SQLite database.
 
 ---
 
