@@ -34,6 +34,15 @@ Users can register, log in, upload files, categorize them, preview supported fil
 
 ---
 
+## ScreenShots: 
+
+
+<img width="951" height="501" alt="image" src="https://github.com/user-attachments/assets/23c28e2e-2e1a-4ea8-990f-42ec8e211cb0" />
+<img width="950" height="501" alt="image" src="https://github.com/user-attachments/assets/12302dc4-2dbc-4597-a4af-57a36a545c25" />
+<img width="948" height="503" alt="image" src="https://github.com/user-attachments/assets/4032151f-ed26-4205-85e8-6c53d135c188" />
+
+---
+
 ## 🛠️ Tech Stack
 
 ### Backend
