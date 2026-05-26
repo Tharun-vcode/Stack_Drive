@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>📂 StackDrive</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="profile">
+        <span>Logged in as: {{ username }}</span>
+        <a href="/logout">Logout</a>
+    </div>
+
+<div class="container">
+    <h1>📂 StackDrive</h1>
+
+    <!-- Horizontal layout for three boxes -->
+    <div class="boxes-row">
+    <!-- Upload Box -->
+    <div class="box upload-box">
+        <h2>Upload File</h2>
+        <form method="post" action="/upload" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <select name="category">
+                <option>Work</option>
+                <option>Personal</option>
+                <option>Study</option>
+                <option>Other</option>
+            </select>
+            <button>Upload</button>
+        </form>
+    </div>
+
+    <!-- File List Box -->
+    <div class="box filelist-box">
+    <h2>Your Files</h2>
+
+    {% if files %}
+    <p><strong>Total Files:</strong> {{ total_files }}</p>
+    <p><strong>Total Storage Used:</strong> {{ total_size }} bytes</p>
+
+    <table style="width:100%; border-collapse: collapse;">
+        <thead>
+            <tr style="background-color:#f0f4ff;">
+                <th>Preview</th>
+                <th>Name</th>
+                <th>Size (bytes)</th>
+                <th>Category</th>
+                <th>Uploaded At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for file in files %}
+            <tr>
+                <!-- Thumbnail for images -->
+                <td>
+                    {% if file.filename.endswith(('.jpg','.jpeg','.png')) %}
+                        <a href="{{ url_for('uploaded_file', filename=file.filename) }}" target="_blank">
+                     <img src="{{ url_for('uploaded_file', filename=file.filename) }}" 
+                     style="width:50px; height:50px; object-fit:cover; border-radius:5px;">
+                     </a>
+
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+
+                <!-- File info -->
+                <td>{{ file.filename }}</td>
+                <td>{{ file.size }}</td>
+                <td>{{ file.category }}</td>
+                <td>{{ file.uploaded_at.strftime('%d-%m-%Y %H:%M') }}</td>
+
+                <!-- Actions -->
+                <td>
+                    <a href="/download/{{ file.id }}">Download</a>
+                    <a href="/delete/{{ file.id }}">Delete</a>
+                {% if file.filename.endswith(('.txt', '.pdf')) %}
+                    | <a href="{{ url_for('uploaded_file', filename=file.filename) }}" target="_blank">Preview</a>
+                {% elif file.filename.endswith('.docx') %}
+                    | <a href="{{ url_for('preview_docx', filename=file.filename) }}" target="_blank">Preview</a>
+                {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+    <p>No files found.</p>
+    {% endif %}
+</div>
+
+    <!-- Search Box -->
+    <div class="box search-box">
+        <h2>Filter & Search</h2>
+        <form method="get" action="/">
+            <select name="filter_category">
+                <option value="">All Categories</option>
+                <option value="Work" {% if request.args.get('filter_category')=='Work' %}selected{% endif %}>Work</option>
+                <option value="Personal" {% if request.args.get('filter_category')=='Personal' %}selected{% endif %}>Personal</option>
+                <option value="Study" {% if request.args.get('filter_category')=='Study' %}selected{% endif %}>Study</option>
+                <option value="Other" {% if request.args.get('filter_category')=='Other' %}selected{% endif %}>Other</option>
+            </select>
+            <select name="sort">
+    <option value="">Sort By</option>
+    <option value="name" {% if sort=='name' %}selected{% endif %}>Name</option>
+    <option value="size" {% if sort=='size' %}selected{% endif %}>Size</option>
+    <option value="date" {% if sort=='date' %}selected{% endif %}>Date</option>
+    <option value="category" {% if sort=='category' %}selected{% endif %}>Category</option>
+    </select>
+
+            <input type="text" name="search" placeholder="Search by file name" value="{{ request.args.get('search','') }}">
+            <button type="submit">Filter</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

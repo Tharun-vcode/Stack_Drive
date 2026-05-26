@@ -1,0 +1,161 @@
+/* Body background — soft blue */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fa8072;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Main container */
+.container {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    width: 95%;
+    max-width: 1200px; /* limits max width */
+}
+
+/* App title */
+h1 {
+    color: #000000 !important;
+    margin-bottom: 10px;
+    font-size: 2em;
+    font-weight: 900 !important;
+}
+
+/* Horizontal boxes row */
+.boxes-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap; /* stack on small screens */
+}
+
+/* Common box style */
+.box {
+    background-color: #ccffcc;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    min-height: 300px; /* adjust as needed */
+}
+
+/* Specific widths for each box */
+.upload-box, .search-box {
+    flex: 1 1 300px;  /* was 200px */
+}
+
+.filelist-box {
+    flex: 2 1 500px;  /* was 350px */
+}
+
+/* Headings */
+.box h2 {
+    margin-bottom: 15px;
+    color: #0d3a66;
+}
+
+/* Form elements inside boxes */
+/* Text inputs (search) and file input slightly bigger */
+.box form input[type="text"],
+.box form input[type="file"] {
+    width: 90%;       /* bigger than before */
+    max-width: 250px; /* prevents it from being too wide */
+    display: inline-block;
+    padding: 10px;    /* a little taller for usability */
+    font-size: 16px;  /* makes text easier to read */
+}
+
+/* Buttons */
+.box form button {
+    width: auto;      /* natural size */
+    padding: 10px 18px;
+    font-size: 16px;
+}
+
+/* Optional: make select slightly taller too */
+.box form select {
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* Buttons */
+.box form button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.box form button:hover {
+    background-color: #1e40af;
+}
+
+/* Links */
+a {
+    color: #2563eb;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* File list paragraph spacing */
+/* Table styling */
+.filelist-box table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.filelist-box th,
+.filelist-box td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+.filelist-box th {
+    background-color: #f0f4ff;
+    color: #1e3a8a;
+}
+
+.filelist-box td a {
+    margin-right: 5px;
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.filelist-box td a:hover {
+    text-decoration: underline;
+}
+
+.profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f4ff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.profile span {
+    font-weight: 600;
+}
+
+.profile a {
+    text-decoration: none;
+    color: #2563eb;
+    font-weight: bold;
+}
+
+.profile a:hover {
+    text-decoration: underline;
+}
