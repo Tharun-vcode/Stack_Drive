@@ -1,0 +1,13 @@
+const express = require("express"); 
+const { uploadSignature, uploadFile, getFiles, getFileId, deleteFile, updateFile, downloadFile, cloudinaryWebhook } = require("../controllers/fileController");
+const authMiddleware = require("../middleware/authMiddleware");
+const router = express.Router(); 
+router.post( "/upload-signature", authMiddleware, uploadSignature); 
+router.post( "/", authMiddleware, uploadFile); 
+router.post( "/webhook", cloudinaryWebhook); 
+router.get( "/", authMiddleware, getFiles);  
+router.get( "/:id", authMiddleware, getFileId); 
+router.delete( "/:id", authMiddleware, deleteFile); 
+router.patch( "/:id", authMiddleware, updateFile);
+router.get( "/:id/download", authMiddleware, downloadFile);
+module.exports = router; 
